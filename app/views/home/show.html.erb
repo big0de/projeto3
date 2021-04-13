@@ -1,0 +1,18 @@
+<h1>Anúncios</h1>
+
+
+<div>
+  <ul class="list-group">
+    <% @ads.each do |ad| %>
+      <li class="list-group-item">
+        <p><strong><%= ad.title %></strong></p>
+        <p> Descrição: <%= ad.description %></p>
+        <p> Preço: <%= ad.prince %></p>
+        <p> Anunciante: <%= ad.user.name %></p>
+        <% if ad.user == current_user  %>
+          <p><%= link_to "Editar", edit_ad_path(ad) %></p>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Classificados</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+  <p>
+    <%= flash.notice %>
+    <%= flash.alert %>
+  </p>
+
+    <nav class="navbar navbar-light bg-dark">
+      <%= link_to t("menu.home"), root_path, :class => "nav-link" %>
+      <% if user_signed_in? %>
+        <%= link_to t("menu.aduser"), userad_path, :class => "nav-link" %>
+        <%= link_to t("menu.adother"), otherad_path, :class => "nav-link" %>
+        <%= link_to t("menu.new_ad"), new_ad_path, :class => "nav-link" %>
+        <%= button_to t("menu.logout"), sign_out_sessions_path, method: :delete, :class => "btn bg-light mx-auto" %>
+      <% else %>
+        <%= link_to t("menu.signup"), new_user_path, :class => "nav-link" %>
+        <%= link_to t("menu.signin"), new_session_path, :class => "nav-link" %>
+      <% end %>
+    </nav>
+
+    <%= yield %>
+    </div>
+  </body>
+</html>
